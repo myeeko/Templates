@@ -7,7 +7,7 @@ This coding template folder was developed as a aid to assist with common coding 
 
 ---
 ## HTML \<head> Tags
-[Link to File](http://www.gnu.org/licenses/)
+[Link to File](https://github.com/myeeko/Templates/blob/main/HTML_headtags)
 ```HTML
 <meta name="robots" content="index, follow">
 <meta name="description" content=".......">
