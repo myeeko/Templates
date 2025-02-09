@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        :root {
+            /* Colours */
+            --clr-black: #000000;
+            --clr-black-light: #222222;
+            --clr-white-dark: #eeeeee;
+            --clr-white: #ffffff;
+            --clr-shade-light: #a289ff;
+            --clr-shade: #663cff;
+            --clr-shade-dark: #3300ef;
+
+            /* Layout */
+            --content_width: calc(100vw - var(--aside_width));
+            --left_navigation: 200px;
+            --aside_width: 140px;
+
+            /* Ads */
+            --ad_width: 120px;
+            --ad_height: 600px;
+
+            /* Typography */
+            --line_height: 1.6rem;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr var(--aside_width);
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+                "top__nav top__nav"
+                "main advertisement"
+                "footer footer";
+        }
+
+        .top__nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            grid-area: top__nav;
+            background: var(--clr-black);
+            padding: 1rem;
+        }
+
+        .top__nav a {
+            color: var(--clr-white);
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .top__nav button {
+            width: 2rem;
+            height: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .top__nav button svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .top__nav button svg line {
+            stroke: var(--clr-white);
+            stroke-width: 12;
+        }
+
+        .content {
+            width: var(--content_width);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto;
+            grid-template-areas:
+                "left__nav main"
+        }
+
+        main {
+            grid-area: main;
+            width: calc(var(--content_width) - var(--left_navigation));
+            /* width: 100vw; */
+            min-height: 300vh;
+            min-height: 300dvh;
+        }
+
+        .left__nav {
+            position: sticky;
+            top: 0;
+            grid-area: left__nav;
+            height: 80vh;
+            width: var(--left_navigation);
+            background-color: var(--clr-white-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding-left: 1rem;
+            line-height: var(--line_height);
+        }
+
+        .left__nav a {
+            color: var(--clr-black);
+        }
+
+
+
+        aside {
+            grid-area: advertisement;
+            background: var(--clr-white-dark);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: var(--aside_width);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .advertisement {
+            height: var(--ad_height);
+            width: var(--ad_width);
+            border: 1px black solid;
+        }
+
+        .advertisement__container {
+            display: flex;
+            justify-content: center;
+        }
+
+        section .advertisement {
+            display: none;
+        }
+
+        .advertisement:last-child {
+            position: sticky;
+            top: 0;
+        }
+
+
+        footer {
+            grid-area: footer;
+            background: lightgreen;
+            padding: 20px;
+        }
+
+        @media (max-width: 1350px) {
+            aside {
+                display: none
+            }
+
+            :root {
+                --aside_width: 0px;
+            }
+
+            section .advertisement {
+                display: block;
+                --ad_width: 970px;
+                --ad_height: 90px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                grid-template-areas:
+                    "top__nav"
+                    "main"
+                    "footer";
+            }
+        }
+
+
+
+
+
+        @media (max-width: 1200px) {
+            section .advertisement {
+                --ad_width: 780px;
+                --ad_height: 90px;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            section .advertisement {
+                --ad_width: 468px;
+                --ad_height: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left__nav {
+                display: none;
+            }
+
+            main {
+                width: 100vw;
+            }
+        }
+
+        @media (max-width: 640px) {
+            section .advertisement {
+                --ad_width: 300px;
+                --ad_height: 250px;
+            }
+        }
+
+
+
+
+        @media (min-width: 1400px) {
+            :root {
+                --aside_width: 180px;
+                --ad_width: 160px;
+                --ad_height: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <nav class="top__nav" id="top">
+                <a href="#">Logo</a>
+                <button>
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="0" y1="10" x2="100" y2="10" />
+                        <line x1="0" y1="50" x2="100" y2="50" />
+                        <line x1="0" y1="90" x2="100" y2="90" />
+                    </svg>
+                </button>
+            </nav>
+
+            <div class="content">
+                <nav class="left__nav">
+                    <ul>
+                        <li><a href="#section1">Article #1</a></li>
+                        <li><a href="#section2">Article #2</a></li>
+                        <li><a href="#section3">Article #3</a></li>
+                        <li><a href="#section4">Article #4</a></li>
+                        <li><a href="#section5">Article #5</a></li>
+                    </ul>
+                    <h1><a href="#top">Logo</a></h1>
+                </nav>
+                <main>
+                    <section>
+                        Hero
+                    </section>
+                    <section class="advertisement__container">
+                        <div class="advertisement">Advertisement</div>
+                    </section>
+
+                    <section id="section1">
+                        Article #1
+                    </section>
+                    <section id="section2">
+                        Article #2
+                    </section>
+                    <section id="section3">
+                        Article #3
+                    </section>
+                    <section id="section4">
+                        Article #4
+                    </section>
+                    <section id="section5">
+                        Article #5
+                    </section>
+                </main>
+            </div>
+
+            <aside>
+                <div class="advertisement">Advertisement</div>
+                <div class="advertisement">Advertisement</div>
+            </aside>
+
+            <footer>Footer</footer>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+<!-- media (min-width: 475px) {}  -->
+<!-- media (min-width: 640px) {}  -->
+<!-- media (min-width: 768px) {}  -->
+<!-- media (min-width: 1024px) {} -->
+<!-- media (min-width: 1280px) {} -->
+<!-- media (min-width: 1536px) {} -->
+<!-- media (min-width: 1920px) {} -->
+<!-- media (min-width: 2560px) {} -->
+
+
+
+<!-- Advertising ------------------- -->
+<!-- Large leaderboard: 970 x 90 pixels -->
+<!-- Leaderboard: 728 x 90 pixels -->
+<!-- Banner: 468 x 60 pixels -->
+<!-- Large rectangle: 336 x 280 pixels -->
+<!-- Inline rectangle: 300 x 250 pixels -->
+
+<!-- Skyscraper: 120 x 600 pixels -->
+<!-- Wide skyscraper: 160 x 600 pixels -->
