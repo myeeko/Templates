@@ -1,163 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-gb">
 
 <head>
+    <!-- Suggested SEO content inside the head tags developed from:..... -->
+    <!-- (1) https://developers.facebook.com/docs/sharing/webmasters -->
+    <!-- (2) https://developer.mozilla.org/en-US/docs/Web/Manifest -->
+    <!-- Just delete or comment out what you don't need / have. -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <style>
-        :root {
-            /* Colours */
-            --clr-black: #000000;
-            --clr-black-light: #222222;
-            --clr-white-dark: #eeeeee;
-            --clr-white: #ffffff;
-            --clr-shade-light: #a289ff;
-            --clr-shade: #663cff;
-            --clr-shade-dark: #3300ef;
+    <!-- <link rel="preconnect"           href="//www.google-analytics.com"> -->
+    <!-- <title>.......... title of the website ............</title> -->
+    <meta name="robots" content="index, follow">
+    <!-- <meta name="description"         content="........ description max 150 characters ............"> -->
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <!-- <link rel="canonical"            href="https://........github.io/"> -->
 
-            /* Layout */
-            --content_width: calc(100vw - var(--aside_width));
-            --left_navigation: 200px;
-            --aside_width: 140px;
+    <!-- Style Sheets -->
+    <!-- <link rel="stylesheet"           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 
-            /* Ads */
-            --ad_width: 120px;
-            --ad_height: 600px;
+    <!-- Open Graph Markup Website -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:title"             content=".......... title of the website ............"> -->
+    <!-- <meta property="og:description"       content="........ description max 150 characters ............"> -->
+    <!-- <meta property="og:url"               content="https://..............github.io/"> -->
+    <!-- <meta property="og:site_name"         content="....... Website name ............."> -->
+    <!-- <meta property="og:see_also"          content="URL to recommended page number 1"> -->
+    <!-- <meta property="og:see_also"          content="URL to recommended page number 2"> -->
 
-            /* Typography */
-            --line_height: 1.6rem;
+    <!-- Open Graph Markup Image -->
+    <!-- <meta property="og:image"             content="https://.......jpg" /> -->
+    <!-- <meta property="og:image:secure_url"  content="https://.......jpg"> -->
+    <!-- <meta property="og:image:type"        content="image/jpeg"> -->
+    <!-- <meta property="og:image:width"       content=""> -->
+    <!-- <meta property="og:image:height"      content=""> -->
 
-        }
+    <!-- Open Graph Markup Video -->
+    <!-- <meta property="og:video"             content="https://.......mp4"> -->
+    <!-- <meta property="og:video:secure_url"  content="https://.......mp4"> -->
+    <!-- <meta property="og:video:type"        content="video/mp4."> -->
+    <!-- <meta property="og:video:width"       content=""> -->
+    <!-- <meta property="og:video:height"      content=""> -->
+    <!-- <meta property="og:image"             content=""> -->
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    <!-- Open Graph Markup Twitter -->
+    <!-- <meta name="twitter:card"             content="summary_large_image"> -->
+    <!-- <meta name="twitter:creator"          content="@............. twitter handle"> -->
+    <!-- <meta name="twitter:site"             content="@............. twitter handle"> -->
+    <!-- <meta name="twitter:title"            content="Title of your page"> -->
+    <!-- <meta name="twitter:url"              content="URL of your page"> -->
+    <!-- <meta name="twitter:domain"           content=".......... title of the website ............""> -->
+    <!-- <meta name="twitter:description"      content="Your description here"> -->
+    <!-- <meta name="twitter:image:src"        content="URL of image"> -->
 
-        }
+    <!-- Manifest -->
+    <!-- <link rel="manifest"                  href="manifest.json"> -->
 
-        html {
-            scroll-behavior: smooth;
-        }
+    <!-- Favicons -->
+    <!-- <link rel="icon" type="image/x-icon"  href="favicon.ico">             32px x 32px -->
+    <!-- <link rel="icon" type="image/png"     href="favicon.png">             1,024px × 1,024px ~12kb -->
+    <!-- <link rel="apple-touch-icon"          href="apple-touch-icon.png">    1,024px × 1,024px ~12kb -->
+    <!-- <link rel="mask-icon" color="#fff"    href="logo.svg"> -->
 
-        a {
-            text-decoration: none;
-        }
+    <!-- MS Application -->
+    <!-- <meta name="msapplication-TileColor"  content="##fff"> -->
+    <!-- <meta name="msapplication-TileImage"  content="/ms-icon-144x144.png"> 144px x 144px -->
+    <!-- <meta name="theme-color"              content="##fff">  -->
 
-        button {
-            background-color: rgba(0, 0, 0, 0);
-            border: none;
-        }
+    <!-- <script>
+    Google Analytics script goes here.
+    </script> -->
 
-        li {
-            list-style: none;
-        }
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style>
+    :root {
+        /* Colours */
+        --clr-black: #000000;
+        --clr-black-light: #222222;
+        --clr-white-dark: #eeeeee;
+        --clr-white: #ffffff;
+        --clr-shade-light: #a289ff;
+        --clr-shade: #663cff;
+        --clr-shade-dark: #3300ef;
 
-        .wrapper {
-            display: flex;
-            justify-content: center;
-        }
+        /* Layout */
+        --maximum_width: 2000px;
+        --content_width: calc(100vw - var(--aside_width));
+        --left_navigation: 200px;
+        --aside_width: 140px;
 
-        .container {
-            display: grid;
-            grid-template-columns: 1fr var(--aside_width);
-            grid-template-rows: auto auto auto;
-            grid-template-areas:
-                "top__nav top__nav"
-                "main advertisement"
-                "footer footer";
-        }
+        /* Ads */
+        --ad_width: 120px;
+        --ad_height: 600px;
 
-        .top__nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            grid-area: top__nav;
-            background: var(--clr-black);
-            padding: 1rem;
-        }
+        /* Typography */
+        --line_height: 1.6rem;
 
-        .top__nav a {
-            color: var(--clr-white);
-            font-weight: 600;
-            font-size: 1.5rem;
-        }
+    }
 
-        .top__nav button {
-            width: 2rem;
-            height: 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
 
-        .top__nav button svg {
-            width: 100%;
-            height: 100%;
-        }
+    }
 
-        .top__nav button svg line {
-            stroke: var(--clr-white);
-            stroke-width: 12;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        .content {
-            width: var(--content_width);
-            display: grid;
-            grid-template-columns: auto 1fr;
-            grid-template-rows: auto;
-            grid-template-areas:
-                "left__nav main"
-        }
+    a {
+        text-decoration: none;
+    }
 
-        main {
-            grid-area: main;
-            width: calc(var(--content_width) - var(--left_navigation));
-            /* width: 100vw; */
-            min-height: 300vh;
-            min-height: 300dvh;
-        }
+    button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+    }
 
-        .left__nav {
-            position: sticky;
-            top: 0;
-            grid-area: left__nav;
-            height: 80vh;
-            width: var(--left_navigation);
-            background-color: var(--clr-white-dark);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            padding-left: 1rem;
-            line-height: var(--line_height);
-        }
+    li {
+        list-style: none;
+    }
 
-        .left__nav a {
-            color: var(--clr-black);
-        }
+    h1 {
+        text-align: center;
+    }
+
+    section {
+        height: 80vh;
+        border-bottom: 5px var(--clr-shade-dark) solid;
+    }
+
+    section:first-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    section:last-child {
+        border: none;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr var(--aside_width);
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "top__nav top__nav"
+            "main advertisement"
+            "footer footer";
+    }
+
+    .top__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        grid-area: top__nav;
+        background: var(--clr-shade-dark);
+        padding: 1rem;
+    }
+
+    .top__nav a {
+        color: var(--clr-white);
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+
+    .top__nav button {
+        width: 2rem;
+        height: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .top__nav button svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .top__nav button svg line {
+        stroke: var(--clr-white);
+        stroke-width: 12;
+    }
+
+    .content {
+        width: var(--content_width);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "left__nav main"
+    }
+
+    main {
+        grid-area: main;
+        width: calc(var(--content_width) - var(--left_navigation));
+        /* width: 100vw; */
+        min-height: 300vh;
+        min-height: 300dvh;
+    }
+
+    .left__nav {
+        position: sticky;
+        top: 0;
+        grid-area: left__nav;
+        height: 80vh;
+        width: var(--left_navigation);
+        background-color: var(--clr-white-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        line-height: var(--line_height);
+    }
+
+    .left__nav a {
+        color: var(--clr-shade-dark);
+    }
 
 
 
+    aside {
+        grid-area: advertisement;
+        background: var(--clr-white-dark);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: var(--aside_width);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .advertisement {
+        height: var(--ad_height);
+        width: var(--ad_width);
+        border: 1px black solid;
+    }
+
+    .advertisement__container {
+        display: none;
+    }
+
+    section .advertisement {
+        display: none;
+    }
+
+    .advertisement:last-child {
+        position: sticky;
+        top: 0;
+    }
+
+
+    footer {
+        grid-area: footer;
+        background: var(--clr-black-light);
+        padding: 20px;
+    }
+
+    footer a {
+        color: var(--clr-white);
+    }
+
+    footer .copyright {
+        display: flex;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+
+    @media (max-width: 1350px) {
         aside {
-            grid-area: advertisement;
-            background: var(--clr-white-dark);
-            padding-top: 20px;
-            padding-bottom: 20px;
-            width: var(--aside_width);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+            display: none
         }
 
-        .advertisement {
-            height: var(--ad_height);
-            width: var(--ad_width);
-            border: 1px black solid;
+        :root {
+            --aside_width: 0px;
         }
 
         .advertisement__container {
@@ -166,92 +301,73 @@
         }
 
         section .advertisement {
+            display: block;
+            --ad_width: 970px;
+            --ad_height: 90px;
+        }
+
+        .container {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas:
+                "top__nav"
+                "main"
+                "footer";
+        }
+    }
+
+
+
+
+    @media (min-width: 2000px) {
+        :root {
+            --content_width: calc(var(--maximum_width) - var(--aside_width));
+        }
+
+    }
+
+    @media (max-width: 1200px) {
+        section .advertisement {
+            --ad_width: 780px;
+            --ad_height: 90px;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        section .advertisement {
+            --ad_width: 468px;
+            --ad_height: 60px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .left__nav {
             display: none;
         }
 
-        .advertisement:last-child {
-            position: sticky;
-            top: 0;
+        main {
+            width: 100vw;
         }
+    }
 
-
-        footer {
-            grid-area: footer;
-            background: lightgreen;
-            padding: 20px;
+    @media (max-width: 640px) {
+        section .advertisement {
+            --ad_width: 300px;
+            --ad_height: 250px;
         }
+    }
 
-        @media (max-width: 1350px) {
-            aside {
-                display: none
-            }
 
-            :root {
-                --aside_width: 0px;
-            }
 
-            section .advertisement {
-                display: block;
-                --ad_width: 970px;
-                --ad_height: 90px;
-            }
 
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-                grid-template-areas:
-                    "top__nav"
-                    "main"
-                    "footer";
-            }
+    @media (min-width: 1400px) {
+        :root {
+            --aside_width: 180px;
+            --ad_width: 160px;
+            --ad_height: 600px;
         }
-
-
-
-
-
-        @media (max-width: 1200px) {
-            section .advertisement {
-                --ad_width: 780px;
-                --ad_height: 90px;
-            }
-        }
-
-        @media (max-width: 1000px) {
-            section .advertisement {
-                --ad_width: 468px;
-                --ad_height: 60px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .left__nav {
-                display: none;
-            }
-
-            main {
-                width: 100vw;
-            }
-        }
-
-        @media (max-width: 640px) {
-            section .advertisement {
-                --ad_width: 300px;
-                --ad_height: 250px;
-            }
-        }
-
-
-
-
-        @media (min-width: 1400px) {
-            :root {
-                --aside_width: 180px;
-                --ad_width: 160px;
-                --ad_height: 600px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body>
@@ -297,9 +413,13 @@
                     <section id="section3">
                         Article #3
                     </section>
+                    <section class="advertisement__container">
+                        <div class="advertisement">Advertisement</div>
+                    </section>
                     <section id="section4">
                         Article #4
                     </section>
+
                     <section id="section5">
                         Article #5
                     </section>
@@ -311,7 +431,10 @@
                 <div class="advertisement">Advertisement</div>
             </aside>
 
-            <footer>Footer</footer>
+            <footer>
+                <a href="#top">Logo</a>
+                <a class="copyright" href="#">Copyright &copy; 2025</a>
+            </footer>
         </div>
     </div>
 
