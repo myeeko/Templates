@@ -69,7 +69,42 @@
     <!-- <meta name="msapplication-TileColor"  content="##fff"> -->
     <!-- <meta name="msapplication-TileImage"  content="/ms-icon-144x144.png"> 144px x 144px -->
     <!-- <meta name="theme-color"              content="##fff">  -->
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+    const navMenuHamburger = document.getElementById("nav__menu__hamburger");
+    const navMenu = document.getElementById("nav__menu__container");
+    const navLinks = navMenu.querySelectorAll("a"); // Select all links inside the menu
 
+    // Toggle the menu when clicking the hamburger
+    navMenuHamburger.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevents the document click event from firing immediately
+
+        if (navMenu.classList.contains("left__nav")) {
+            navMenu.classList.remove("left__nav");
+            navMenu.classList.add("responsive__nav");
+        } else {
+            navMenu.classList.remove("responsive__nav");
+            navMenu.classList.add("left__nav");
+        }
+    });
+
+    // Close the menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!navMenu.contains(event.target) && !navMenuHamburger.contains(event.target)) {
+            navMenu.classList.remove("responsive__nav");
+            navMenu.classList.add("left__nav");
+        }
+    });
+
+    // Close the menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            navMenu.classList.remove("responsive__nav");
+            navMenu.classList.add("left__nav");
+        });
+    });
+});
+    </script>
     <!-- <script>
     Google Analytics script goes here.
     </script> -->
@@ -93,6 +128,7 @@
         --maximum_width: 2000px;
         --content_width: calc(100vw - var(--aside_width));
         --left_navigation: 200px;
+        --responsive_navigation: 300px;
         --aside_width: 140px;
 
         /* Ads */
@@ -182,7 +218,7 @@
     .top__nav button {
         width: 2rem;
         height: 1.8rem;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         cursor: pointer;
@@ -210,7 +246,6 @@
     main {
         grid-area: main;
         width: calc(var(--content_width) - var(--left_navigation));
-        /* width: 100vw; */
         min-height: 300vh;
         min-height: 300dvh;
     }
@@ -232,9 +267,28 @@
         line-height: var(--line_height);
     }
 
+    .responsive__nav {
+        position: fixed;
+        right: 0;
+        height: 80vh;
+        width: var(--responsive_navigation);
+        background-color: var(--clr-white-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        line-height: calc(var(--line_height)*1.5);
+        z-index: 10;
+    }
+
+
     .left__nav a {
         color: var(--clr-shade-dark);
     }
+
 
 
 
@@ -344,6 +398,9 @@
         .left__nav {
             display: none;
         }
+        #nav__menu__hamburger{
+            display: block;
+        }
 
         main {
             width: 100vw;
@@ -376,7 +433,7 @@
         <div class="container">
             <nav class="top__nav" id="top">
                 <a href="#">Logo</a>
-                <button>
+                <button id="nav__menu__hamburger">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <line x1="0" y1="10" x2="100" y2="10" />
                         <line x1="0" y1="50" x2="100" y2="50" />
@@ -386,7 +443,7 @@
             </nav>
 
             <div class="content">
-                <nav class="left__nav">
+                <nav class="left__nav" id="nav__menu__container">
                     <ul>
                         <li><a href="#section1">Article #1</a></li>
                         <li><a href="#section2">Article #2</a></li>
