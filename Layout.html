@@ -71,39 +71,39 @@
     <!-- <meta name="theme-color"              content="##fff">  -->
     <script defer>
         document.addEventListener("DOMContentLoaded", function () {
-    const navMenuHamburger = document.getElementById("nav__menu__hamburger");
-    const navMenu = document.getElementById("nav__menu__container");
-    const navLinks = navMenu.querySelectorAll("a"); // Select all links inside the menu
+            const navMenuHamburger = document.getElementById("nav__menu__hamburger");
+            const navMenu = document.getElementById("nav__menu__container");
+            const navLinks = navMenu.querySelectorAll("a"); // Select all links inside the menu
 
-    // Toggle the menu when clicking the hamburger
-    navMenuHamburger.addEventListener("click", function (event) {
-        event.stopPropagation(); // Prevents the document click event from firing immediately
+            // Toggle the menu when clicking the hamburger
+            navMenuHamburger.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevents the document click event from firing immediately
 
-        if (navMenu.classList.contains("left__nav")) {
-            navMenu.classList.remove("left__nav");
-            navMenu.classList.add("responsive__nav");
-        } else {
-            navMenu.classList.remove("responsive__nav");
-            navMenu.classList.add("left__nav");
-        }
-    });
+                if (navMenu.classList.contains("left__nav")) {
+                    navMenu.classList.remove("left__nav");
+                    navMenu.classList.add("responsive__nav");
+                } else {
+                    navMenu.classList.remove("responsive__nav");
+                    navMenu.classList.add("left__nav");
+                }
+            });
 
-    // Close the menu when clicking outside
-    document.addEventListener("click", function (event) {
-        if (!navMenu.contains(event.target) && !navMenuHamburger.contains(event.target)) {
-            navMenu.classList.remove("responsive__nav");
-            navMenu.classList.add("left__nav");
-        }
-    });
+            // Close the menu when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!navMenu.contains(event.target) && !navMenuHamburger.contains(event.target)) {
+                    navMenu.classList.remove("responsive__nav");
+                    navMenu.classList.add("left__nav");
+                }
+            });
 
-    // Close the menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener("click", function () {
-            navMenu.classList.remove("responsive__nav");
-            navMenu.classList.add("left__nav");
+            // Close the menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    navMenu.classList.remove("responsive__nav");
+                    navMenu.classList.add("left__nav");
+                });
+            });
         });
-    });
-});
     </script>
     <!-- <script>
     Google Analytics script goes here.
@@ -127,7 +127,9 @@
         /* Layout */
         --maximum_width: 2000px;
         --content_width: calc(100vw - var(--aside_width));
-        --left_navigation: 200px;
+        /* --left_navigation: 200px; */
+        /* --left_navigation: clamp(180px, 40vw, 250px); */
+        --left_navigation: 25ch;
         --responsive_navigation: 300px;
         --aside_width: 140px;
 
@@ -137,6 +139,26 @@
 
         /* Typography */
         --line_height: 1.6rem;
+
+        /* Font Sizes */
+        --fontsize-h1: clamp(2rem, 5vw, 4rem);
+        --fontsize-h2: clamp(1.5rem, 4vw, 2.75rem);
+        --fontsize-h3: clamp(1.25rem, 3.5vw, 2rem);
+        --fontsize-h4: clamp(1.1rem, 3vw, 1.5rem);
+        --fontsize-body: clamp(0.9375rem, 2vw, 1.25rem);
+        --fontsize-small: clamp(0.8125rem, 1.8vw, 1.125rem);
+        --fontsize-nav_logo: clamp(1.25rem, 3.5vw, 2rem);
+
+        /* Line Heights */
+        --lineheight-h1: 1.2;
+        --lineheight-h2: 1.3;
+        --lineheight-h3: 1.4;
+        --lineheight-h4: 1.5;
+        --lineheight-body: 1.6;
+
+        /* Letter Spacing */
+        --letterspacing-h1: -0.02em;
+        --letterspacing-body: 0.02em;
 
     }
 
@@ -149,6 +171,33 @@
 
     html {
         scroll-behavior: smooth;
+    }
+
+    h1 {
+        font-size: var(--fontsize-h1);
+        line-height: var(--lineheight-h1);
+        letter-spacing: var(--letterspacing-h1);
+    }
+
+    h2 {
+        font-size: var(--fontsize-h2);
+        line-height: var(--lineheight-h2);
+    }
+
+    h3 {
+        font-size: var(--fontsize-h3);
+        line-height: var(--lineheight-h3);
+    }
+
+    h4 {
+        font-size: var(--fontsize-h4);
+        line-height: var(--lineheight-h4);
+    }
+
+    p {
+        font-size: var(--fontsize-body);
+        line-height: var(--lineheight-body);
+        letter-spacing: var(--letterspacing-body);
     }
 
     a {
@@ -164,17 +213,14 @@
         list-style: none;
     }
 
-    h1 {
-        text-align: center;
-    }
-
     section {
-        height: 80vh;
+        min-height: 80vh;
         border-bottom: 5px var(--clr-shade-dark) solid;
     }
 
     section:first-child {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -206,13 +252,16 @@
         align-items: center;
         grid-area: top__nav;
         background: var(--clr-shade-dark);
-        padding: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
     }
 
     .top__nav a {
         color: var(--clr-white);
         font-weight: 600;
-        font-size: 1.5rem;
+        font-size: var(--fontsize-nav_logo)
     }
 
     .top__nav button {
@@ -284,12 +333,22 @@
         z-index: 10;
     }
 
-
     .left__nav a {
         color: var(--clr-shade-dark);
+        font-weight: 300;
     }
 
+    .left__nav .nav_logo {
+        font-size: var(--fontsize-nav_logo);
+        text-align: center;
+        font-weight: 600;
+    }
 
+    .responsive__nav .nav_logo {
+        font-size: var(--fontsize-nav_logo);
+        text-align: center;
+        font-weight: 600;
+    }
 
 
     aside {
@@ -337,7 +396,7 @@
     footer .copyright {
         display: flex;
         justify-content: center;
-        font-size: 0.8rem;
+        font-size: var(--fontsize-small);
     }
 
     @media (max-width: 1350px) {
@@ -398,7 +457,8 @@
         .left__nav {
             display: none;
         }
-        #nav__menu__hamburger{
+
+        #nav__menu__hamburger {
             display: block;
         }
 
@@ -445,40 +505,46 @@
             <div class="content">
                 <nav class="left__nav" id="nav__menu__container">
                     <ul>
-                        <li><a href="#section1">Article #1</a></li>
-                        <li><a href="#section2">Article #2</a></li>
-                        <li><a href="#section3">Article #3</a></li>
-                        <li><a href="#section4">Article #4</a></li>
-                        <li><a href="#section5">Article #5</a></li>
+                        <li><h4><a href="#section1">Article #1</a></h4></li>
+                        <li><h4><a href="#section2">Article #2</a></h4></li>
+                        <li><h4><a href="#section3">Article #3</a></h4></li>
+                        <li><h4><a href="#section4">Article #4</a></h4></li>
+                        <li><h4><a href="#section5">Article #5</a></h4></li>
                     </ul>
-                    <h1><a href="#top">Logo</a></h1>
+                    <a href="#top" class="nav_logo">Logo</a>
                 </nav>
                 <main>
                     <section>
-                        Hero
+                        <h1>Hero Section</h1>
+                        <p>Where the good stuff goes</p>
                     </section>
                     <section class="advertisement__container">
                         <div class="advertisement">Advertisement</div>
                     </section>
 
                     <section id="section1">
-                        Article #1
+                        <h2>Article 1</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi beatae inventore, dolores ea provident accusantium illum mollitia nisi fugit, odit excepturi maxime! Aliquid nisi temporibus debitis, voluptate aut ea, reiciendis asperiores architecto aspernatur, delectus corporis sed praesentium qui natus nulla sunt minima error suscipit deleniti nostrum pariatur ex voluptates ipsum enim. Nisi quae ipsam, doloremque veritatis assumenda eaque numquam, nam laborum accusantium consequatur incidunt. Maiores laudantium corrupti hic sapiente alias magnam maxime fuga eligendi in sed, praesentium voluptatem illo eius quo obcaecati sunt distinctio id aperiam suscipit. Harum at odit deleniti, hic ratione expedita error, delectus maxime veniam quidem fugiat. Dolore quis voluptatum voluptatem ipsa accusamus fugit tenetur odio ab, id deleniti magni numquam quam aut dolores labore ullam sed dicta quia pariatur assumenda blanditiis aliquid, explicabo harum illum? Harum tempora repellendus numquam illum sunt necessitatibus totam esse laboriosam distinctio illo sapiente vitae rem itaque eos quae a dolorem, blanditiis, nesciunt quam. Distinctio accusamus nihil autem quibusdam, asperiores adipisci totam sequi illum rem, ab provident porro inventore magnam saepe rerum quos modi, iusto recusandae omnis! Culpa sunt incidunt soluta consequuntur, cum repudiandae velit ratione ipsam tempore, hic laborum! Molestiae atque delectus veritatis officia autem fugiat eveniet repudiandae quia hic nam.</p>
                     </section>
                     <section id="section2">
-                        Article #2
+                        <h2>Article 2</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat molestiae inventore, repellat, nisi atque saepe eos mollitia totam nemo culpa dolore modi a cumque iusto, eius ducimus assumenda vero necessitatibus dolorem similique illum minus quidem laborum? Modi illum, accusamus quasi ullam minus facilis, a dolorem suscipit labore inventore reprehenderit. Quasi modi natus inventore? Qui quo libero ipsam sequi quibusdam beatae quasi nostrum asperiores est totam illo rem, dolorem, debitis quisquam itaque numquam. Magnam eos animi, aspernatur at voluptate commodi aliquam, cum explicabo ex ipsa ratione voluptates, perspiciatis nisi quos consectetur officiis porro obcaecati reiciendis voluptatum inventore libero modi mollitia. Facilis nostrum placeat, molestiae, assumenda sed, hic optio minus obcaecati vel ex aut! Animi, consectetur. Nihil soluta ut, aperiam numquam corrupti nesciunt quam enim praesentium quia doloremque corporis atque quasi nostrum asperiores iste expedita ex, nisi debitis culpa vel, ipsa aspernatur. Dicta sequi enim dolorum at cupiditate deserunt sit dolorem adipisci.</p>
                     </section>
                     <section id="section3">
-                        Article #3
+                        <h2>Article 3</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab cum inventore nobis quos quia iste voluptate expedita veritatis nihil dolorum delectus neque at accusamus sequi, unde consequatur illum mollitia, obcaecati earum soluta tenetur. Ipsa dolorem quo incidunt alias asperiores corrupti perspiciatis, ad atque. Eveniet, sunt cumque molestiae architecto numquam adipisci quo deleniti dolorum excepturi. Laudantium provident labore sunt, porro, nesciunt quas commodi cupiditate omnis soluta officia at eius debitis id ipsum hic nostrum suscipit nulla quasi, laboriosam sed modi. Eius mollitia ipsam architecto itaque velit consequatur fuga impedit nemo nobis facilis quas ea delectus, ab temporibus praesentium molestiae animi error!</p>
                     </section>
                     <section class="advertisement__container">
                         <div class="advertisement">Advertisement</div>
                     </section>
                     <section id="section4">
-                        Article #4
+                        <h2>Article 4</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel fugiat aspernatur itaque atque distinctio quas eveniet harum dicta? Deleniti officia qui, consectetur inventore iure quis perspiciatis ipsam atque facilis quod, accusamus repellat consequatur magnam, dolores modi tempore iusto ab id reiciendis. Esse, in omnis sit praesentium dignissimos ex, molestiae deserunt, sint et corrupti hic nesciunt soluta corporis modi quibusdam harum velit recusandae voluptates saepe unde distinctio at vel tenetur. Magnam accusamus in saepe quisquam omnis dignissimos aliquid reprehenderit quidem! Totam harum voluptatibus minima maiores beatae aspernatur obcaecati aliquam repellendus perferendis placeat voluptatem nisi, quas, delectus facere velit reprehenderit fugiat voluptates, repudiandae odio tenetur suscipit officia doloribus eius! A aliquam, laboriosam accusantium maxime placeat nulla nostrum expedita, possimus unde recusandae repellendus.</p>
                     </section>
 
                     <section id="section5">
-                        Article #5
+                        <h2>Article 5</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est unde nulla laborum repudiandae ipsa provident itaque veniam reiciendis. Incidunt magni consequatur a porro suscipit repellendus repudiandae magnam mollitia beatae veritatis doloribus, quam expedita explicabo voluptatum, id ad quo ut placeat reprehenderit facere nesciunt, tenetur illo. Dolore, repellendus labore impedit fugiat odit aliquam modi? Architecto alias excepturi magni in, cumque nostrum, magnam distinctio earum explicabo, numquam voluptas nobis dolorem necessitatibus iusto itaque delectus. Libero iure eligendi repellendus mollitia! Commodi dignissimos dicta cum, quos, sunt sapiente, minus inventore maxime nemo nam ipsa in voluptate. Quam minus iure beatae magnam! Quos minus totam cumque! Optio quos explicabo animi non corporis illum, tempore soluta esse provident quidem dolorem dolorum accusamus aperiam veritatis sapiente incidunt officia. Eveniet dolorem quasi explicabo, repellendus iure maxime adipisci! Itaque esse, odio sed vel vero recusandae distinctio tempora accusantium doloremque ipsum id ad tenetur quam dolores? Assumenda ratione eum tempore qui. Ea cum corrupti incidunt laboriosam laborum maiores, nihil nostrum totam, reiciendis facere quas dicta placeat earum minus! Itaque perspiciatis deleniti modi culpa corporis sapiente aspernatur? Voluptates, voluptatem. Veniam quisquam voluptatum enim magni ea consequatur repellat, debitis ducimus laudantium doloribus molestias nisi fuga nulla ex! Eligendi aliquid temporibus laborum cum! Deleniti sint accusantium obcaecati, ut est autem, et possimus reiciendis tempora architecto alias nihil ex officia aut voluptatem molestiae reprehenderit.</p>
                     </section>
                 </main>
             </div>
@@ -489,7 +555,7 @@
             </aside>
 
             <footer>
-                <a href="#top">Logo</a>
+                <a href="#top"><h3>Logo</h3></a>
                 <a class="copyright" href="#">Copyright &copy; 2025</a>
             </footer>
         </div>
